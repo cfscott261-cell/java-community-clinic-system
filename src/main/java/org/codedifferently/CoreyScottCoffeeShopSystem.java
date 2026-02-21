@@ -4,18 +4,38 @@ import java.util.ArrayList;
 public class CoreyScottCoffeeShopSystem {
 
     private ArrayList<CoreyScottOrder> orders;
+    //array list name will be whatever the name is of the main class
     private ArrayList<Main> waitlist;
     private String[] pickupSlots;
 
+    //constructor
     public CoreyScottCoffeeShopSystem() {
         orders = new ArrayList<>();
         waitlist = new ArrayList<>();
 
         pickupSlots = new String[]{
                 "8am", "9am", "10am", "11am", "12pm", "2pm"
-
         };
+    }
+    public void viewSchedule() {
 
+        for (int i = 0; i < pickupSlots.length; i++) {
+
+            boolean booked = false;
+
+            for (CoreyScottOrder order : orders) {
+                if (order.getPickupSlot() == i) {
+                    System.out.println(pickupSlots[i] + " - " + order);
+                    booked = true;
+                    break;
+                }
+            }
+
+            if (!booked) {
+                System.out.println(pickupSlots[i] + " - Available");
+            }
+        }
+    }
         public void scheduleOrder(Main customer, int slot) {
 
             if (slot < 0 || slot >= pickupSlots.length) {

@@ -17,6 +17,10 @@ public class CoreyScottOrder {
         return pickupSlot;
     }
 
+    public String getDrink() {
+        return drink;
+    }
+
     public boolean isCompleted() {
         return completed;
     }
