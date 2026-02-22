@@ -1,28 +1,25 @@
-package masonbrown;
+package org.codedifferently;
 
 import java.util.Scanner;
 
-public class MasonBrownCoffeeShopApp {
+public class CoreyScottCoffeeShopApp {
 
     public static void main(String[] args) {
 
-        MasonBrownCoffeeShopSystem system =
-                new MasonBrownCoffeeShopSystem();
+        CoreyScottCoffeeShopSystem system =
+                new CoreyScottCoffeeShopSystem();
 
         Scanner scanner = new Scanner(System.in);
         int choice;
 
         do {
-            System.out.println("\n=== Coffee Shop Pickup System ===");
-            System.out.println("1. Add Customer");
-            System.out.println("2. View Customers");
-            System.out.println("3. Check In Customer");
-            System.out.println("4. Schedule Pickup");
-            System.out.println("5. View Schedule");
-            System.out.println("6. Complete Order");
-            System.out.println("7. Daily Summary");
+            System.out.println("\n=== Coffee Shop System ===");
+            System.out.println("1. Schedule Order");
+            System.out.println("2. View Schedule");
+            System.out.println("3. Complete Order");
+            System.out.println("4. Daily Report");
             System.out.println("0. Exit");
-            System.out.print("Choose an option: ");
+            System.out.print("Choose: ");
 
             choice = scanner.nextInt();
             scanner.nextLine();
@@ -30,56 +27,41 @@ public class MasonBrownCoffeeShopApp {
             switch (choice) {
 
                 case 1:
-                    System.out.print("Enter name: ");
+                    System.out.print("Customer name: ");
                     String name = scanner.nextLine();
 
-                    System.out.print("Enter phone number: ");
-                    String phone = scanner.nextLine();
+                    System.out.print("Drink: ");
+                    String drink = scanner.nextLine();
 
-                    system.addCustomer(name, phone);
+                    System.out.print("Slot (0-5): ");
+                    int slot = scanner.nextInt();
+                    scanner.nextLine();
+
+                    system.scheduleOrder(name, slot, drink);
                     break;
 
                 case 2:
-                    system.viewAllCustomers();
-                    break;
-
-                case 3:
-                    System.out.print("Enter Customer ID: ");
-                    int checkId = scanner.nextInt();
-                    scanner.nextLine();
-                    system.checkInCustomer(checkId);
-                    break;
-
-                case 4:
-                    System.out.print("Enter Customer ID: ");
-                    int custId = scanner.nextInt();
-                    System.out.print("Enter Pickup Slot (0-7): ");
-                    int slot = scanner.nextInt();
-                    scanner.nextLine();
-                    system.scheduleOrder(custId, slot);
-                    break;
-
-                case 5:
                     system.viewSchedule();
                     break;
 
-                case 6:
-                    System.out.print("Enter Order ID: ");
-                    int orderId = scanner.nextInt();
+                case 3:
+                    System.out.print("Slot to complete: ");
+                    int completeSlot = scanner.nextInt();
                     scanner.nextLine();
-                    system.completeOrder(orderId);
+
+                    system.completeOrder(completeSlot);
                     break;
 
-                case 7:
-                    system.dailySummary();
+                case 4:
+                    system.dailyReport();
                     break;
 
                 case 0:
-                    System.out.println("Exiting system...");
+                    System.out.println("Goodbye!");
                     break;
 
                 default:
-                    System.out.println("Invalid option.");
+                    System.out.println("Invalid choice.");
             }
 
         } while (choice != 0);
@@ -87,4 +69,3 @@ public class MasonBrownCoffeeShopApp {
         scanner.close();
     }
 }
-
