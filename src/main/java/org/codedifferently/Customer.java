@@ -1,7 +1,4 @@
 package org.codedifferently;
-public class Customer {
-}
-
 
 public class Customer {
 
